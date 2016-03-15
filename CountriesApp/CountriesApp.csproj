@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{0C2FD026-7AF9-48BC-A012-18D56C765CBE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CountriesApp</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>CountriesApp</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\portable-win+net40+sl40+wp7\Common.Logging.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\First.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\First.imageset\First.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\Second.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Second.imageset\Second.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="CustomTableCell\CountryTableViewCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Services\ICountryService.cs" />
+    <Compile Include="Services\CountryService.cs" />
+    <Compile Include="CustomTableCell\CountryTableViewCell.cs" />
+    <Compile Include="CustomTableCell\CountryTableViewCell.designer.cs">
+      <DependentUpon>CountryTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Constants.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="DBLayer\DBLayer.cs" />
+    <Compile Include="Model\AddToFavorites.cs" />
+    <Compile Include="Controllers\DetailViewController.cs" />
+    <Compile Include="Controllers\DetailViewController.designer.cs">
+      <DependentUpon>DetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FirstViewController.cs" />
+    <Compile Include="Controllers\FirstViewController.designer.cs">
+      <DependentUpon>FirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SecondViewController.cs" />
+    <Compile Include="Controllers\SecondViewController.designer.cs">
+      <DependentUpon>SecondViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+    <Folder Include="Resources\Countries\" />
+    <Folder Include="CustomTableCell\" />
+    <Folder Include="DBLayer\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Countries\ad.png" />
+    <BundleResource Include="Resources\Countries\ae.png" />
+    <BundleResource Include="Resources\Countries\af.png" />
+    <BundleResource Include="Resources\Countries\ag.png" />
+    <BundleResource Include="Resources\Countries\ai.png" />
+    <BundleResource Include="Resources\Countries\al.png" />
+    <BundleResource Include="Resources\Countries\am.png" />
+    <BundleResource Include="Resources\Countries\ao.png" />
+    <BundleResource Include="Resources\Countries\ar.png" />
+    <BundleResource Include="Resources\Countries\as.png" />
+    <BundleResource Include="Resources\Countries\at.png" />
+    <BundleResource Include="Resources\Countries\au.png" />
+    <BundleResource Include="Resources\Countries\aw.png" />
+    <BundleResource Include="Resources\Countries\ax.png" />
+    <BundleResource Include="Resources\Countries\az.png" />
+    <BundleResource Include="Resources\Countries\ba.png" />
+    <BundleResource Include="Resources\Countries\bb.png" />
+    <BundleResource Include="Resources\Countries\bd.png" />
+    <BundleResource Include="Resources\Countries\be.png" />
+    <BundleResource Include="Resources\Countries\bf.png" />
+    <BundleResource Include="Resources\Countries\bg.png" />
+    <BundleResource Include="Resources\Countries\bh.png" />
+    <BundleResource Include="Resources\Countries\bi.png" />
+    <BundleResource Include="Resources\Countries\bj.png" />
+    <BundleResource Include="Resources\Countries\bm.png" />
+    <BundleResource Include="Resources\Countries\bn.png" />
+    <BundleResource Include="Resources\Countries\bo.png" />
+    <BundleResource Include="Resources\Countries\br.png" />
+    <BundleResource Include="Resources\Countries\bs.png" />
+    <BundleResource Include="Resources\Countries\bt.png" />
+    <BundleResource Include="Resources\Countries\bw.png" />
+    <BundleResource Include="Resources\Countries\by.png" />
+    <BundleResource Include="Resources\Countries\bz.png" />
+    <BundleResource Include="Resources\Countries\ca.png" />
+    <BundleResource Include="Resources\Countries\cc.png" />
+    <BundleResource Include="Resources\Countries\cd.png" />
+    <BundleResource Include="Resources\Countries\cf.png" />
+    <BundleResource Include="Resources\Countries\cg.png" />
+    <BundleResource Include="Resources\Countries\ch.png" />
+    <BundleResource Include="Resources\Countries\ci.png" />
+    <BundleResource Include="Resources\Countries\ck.png" />
+    <BundleResource Include="Resources\Countries\cl.png" />
+    <BundleResource Include="Resources\Countries\cm.png" />
+    <BundleResource Include="Resources\Countries\cn.png" />
+    <BundleResource Include="Resources\Countries\co.png" />
+    <BundleResource Include="Resources\Countries\cr.png" />
+    <BundleResource Include="Resources\Countries\cu.png" />
+    <BundleResource Include="Resources\Countries\cv.png" />
+    <BundleResource Include="Resources\Countries\cw.png" />
+    <BundleResource Include="Resources\Countries\cx.png" />
+    <BundleResource Include="Resources\Countries\cy.png" />
+    <BundleResource Include="Resources\Countries\cz.png" />
+    <BundleResource Include="Resources\Countries\de.png" />
+    <BundleResource Include="Resources\Countries\dj.png" />
+    <BundleResource Include="Resources\Countries\dk.png" />
+    <BundleResource Include="Resources\Countries\dm.png" />
+    <BundleResource Include="Resources\Countries\do.png" />
+    <BundleResource Include="Resources\Countries\dz.png" />
+    <BundleResource Include="Resources\Countries\ec.png" />
+    <BundleResource Include="Resources\Countries\ee.png" />
+    <BundleResource Include="Resources\Countries\eg.png" />
+    <BundleResource Include="Resources\Countries\er.png" />
+    <BundleResource Include="Resources\Countries\es.png" />
+    <BundleResource Include="Resources\Countries\et.png" />
+    <BundleResource Include="Resources\Countries\fi.png" />
+    <BundleResource Include="Resources\Countries\fj.png" />
+    <BundleResource Include="Resources\Countries\fk.png" />
+    <BundleResource Include="Resources\Countries\fm.png" />
+    <BundleResource Include="Resources\Countries\fo.png" />
+    <BundleResource Include="Resources\Countries\fr.png" />
+    <BundleResource Include="Resources\Countries\ga.png" />
+    <BundleResource Include="Resources\Countries\gb.png" />
+    <BundleResource Include="Resources\Countries\gd.png" />
+    <BundleResource Include="Resources\Countries\ge.png" />
+    <BundleResource Include="Resources\Countries\gg.png" />
+    <BundleResource Include="Resources\Countries\gh.png" />
+    <BundleResource Include="Resources\Countries\gi.png" />
+    <BundleResource Include="Resources\Countries\gl.png" />
+    <BundleResource Include="Resources\Countries\gm.png" />
+    <BundleResource Include="Resources\Countries\gn.png" />
+    <BundleResource Include="Resources\Countries\gq.png" />
+    <BundleResource Include="Resources\Countries\gr.png" />
+    <BundleResource Include="Resources\Countries\gs.png" />
+    <BundleResource Include="Resources\Countries\gt.png" />
+    <BundleResource Include="Resources\Countries\gu.png" />
+    <BundleResource Include="Resources\Countries\gw.png" />
+    <BundleResource Include="Resources\Countries\gy.png" />
+    <BundleResource Include="Resources\Countries\hk.png" />
+    <BundleResource Include="Resources\Countries\hn.png" />
+    <BundleResource Include="Resources\Countries\hr.png" />
+    <BundleResource Include="Resources\Countries\ht.png" />
+    <BundleResource Include="Resources\Countries\hu.png" />
+    <BundleResource Include="Resources\Countries\id.png" />
+    <BundleResource Include="Resources\Countries\ie.png" />
+    <BundleResource Include="Resources\Countries\il.png" />
+    <BundleResource Include="Resources\Countries\im.png" />
+    <BundleResource Include="Resources\Countries\in.png" />
+    <BundleResource Include="Resources\Countries\io.png" />
+    <BundleResource Include="Resources\Countries\iq.png" />
+    <BundleResource Include="Resources\Countries\ir.png" />
+    <BundleResource Include="Resources\Countries\is.png" />
+    <BundleResource Include="Resources\Countries\it.png" />
+    <BundleResource Include="Resources\Countries\je.png" />
+    <BundleResource Include="Resources\Countries\jm.png" />
+    <BundleResource Include="Resources\Countries\jo.png" />
+    <BundleResource Include="Resources\Countries\jp.png" />
+    <BundleResource Include="Resources\Countries\ke.png" />
+    <BundleResource Include="Resources\Countries\kg.png" />
+    <BundleResource Include="Resources\Countries\kh.png" />
+    <BundleResource Include="Resources\Countries\ki.png" />
+    <BundleResource Include="Resources\Countries\km.png" />
+    <BundleResource Include="Resources\Countries\kn.png" />
+    <BundleResource Include="Resources\Countries\kp.png" />
+    <BundleResource Include="Resources\Countries\kr.png" />
+    <BundleResource Include="Resources\Countries\kw.png" />
+    <BundleResource Include="Resources\Countries\ky.png" />
+    <BundleResource Include="Resources\Countries\kz.png" />
+    <BundleResource Include="Resources\Countries\la.png" />
+    <BundleResource Include="Resources\Countries\lb.png" />
+    <BundleResource Include="Resources\Countries\lc.png" />
+    <BundleResource Include="Resources\Countries\li.png" />
+    <BundleResource Include="Resources\Countries\lk.png" />
+    <BundleResource Include="Resources\Countries\lr.png" />
+    <BundleResource Include="Resources\Countries\ls.png" />
+    <BundleResource Include="Resources\Countries\lt.png" />
+    <BundleResource Include="Resources\Countries\lu.png" />
+    <BundleResource Include="Resources\Countries\lv.png" />
+    <BundleResource Include="Resources\Countries\ly.png" />
+    <BundleResource Include="Resources\Countries\ma.png" />
+    <BundleResource Include="Resources\Countries\mc.png" />
+    <BundleResource Include="Resources\Countries\md.png" />
+    <BundleResource Include="Resources\Countries\me.png" />
+    <BundleResource Include="Resources\Countries\mg.png" />
+    <BundleResource Include="Resources\Countries\mh.png" />
+    <BundleResource Include="Resources\Countries\mk.png" />
+    <BundleResource Include="Resources\Countries\ml.png" />
+    <BundleResource Include="Resources\Countries\mm.png" />
+    <BundleResource Include="Resources\Countries\mn.png" />
+    <BundleResource Include="Resources\Countries\mo.png" />
+    <BundleResource Include="Resources\Countries\mp.png" />
+    <BundleResource Include="Resources\Countries\mq.png" />
+    <BundleResource Include="Resources\Countries\mr.png" />
+    <BundleResource Include="Resources\Countries\ms.png" />
+    <BundleResource Include="Resources\Countries\mt.png" />
+    <BundleResource Include="Resources\Countries\mu.png" />
+    <BundleResource Include="Resources\Countries\mv.png" />
+    <BundleResource Include="Resources\Countries\mw.png" />
+    <BundleResource Include="Resources\Countries\mx.png" />
+    <BundleResource Include="Resources\Countries\my.png" />
+    <BundleResource Include="Resources\Countries\mz.png" />
+    <BundleResource Include="Resources\Countries\na.png" />
+    <BundleResource Include="Resources\Countries\nc.png" />
+    <BundleResource Include="Resources\Countries\ne.png" />
+    <BundleResource Include="Resources\Countries\nf.png" />
+    <BundleResource Include="Resources\Countries\ng.png" />
+    <BundleResource Include="Resources\Countries\ni.png" />
+    <BundleResource Include="Resources\Countries\nl.png" />
+    <BundleResource Include="Resources\Countries\no.png" />
+    <BundleResource Include="Resources\Countries\np.png" />
+    <BundleResource Include="Resources\Countries\nr.png" />
+    <BundleResource Include="Resources\Countries\nu.png" />
+    <BundleResource Include="Resources\Countries\nz.png" />
+    <BundleResource Include="Resources\Countries\om.png" />
+    <BundleResource Include="Resources\Countries\pa.png" />
+    <BundleResource Include="Resources\Countries\pe.png" />
+    <BundleResource Include="Resources\Countries\pf.png" />
+    <BundleResource Include="Resources\Countries\pg.png" />
+    <BundleResource Include="Resources\Countries\ph.png" />
+    <BundleResource Include="Resources\Countries\pk.png" />
+    <BundleResource Include="Resources\Countries\pl.png" />
+    <BundleResource Include="Resources\Countries\pn.png" />
+    <BundleResource Include="Resources\Countries\pr.png" />
+    <BundleResource Include="Resources\Countries\ps.png" />
+    <BundleResource Include="Resources\Countries\pt.png" />
+    <BundleResource Include="Resources\Countries\pw.png" />
+    <BundleResource Include="Resources\Countries\py.png" />
+    <BundleResource Include="Resources\Countries\qa.png" />
+    <BundleResource Include="Resources\Countries\re.png" />
+    <BundleResource Include="Resources\Countries\ro.png" />
+    <BundleResource Include="Resources\Countries\rs.png" />
+    <BundleResource Include="Resources\Countries\ru.png" />
+    <BundleResource Include="Resources\Countries\rw.png" />
+    <BundleResource Include="Resources\Countries\sa.png" />
+    <BundleResource Include="Resources\Countries\sb.png" />
+    <BundleResource Include="Resources\Countries\sc.png" />
+    <BundleResource Include="Resources\Countries\sd.png" />
+    <BundleResource Include="Resources\Countries\se.png" />
+    <BundleResource Include="Resources\Countries\sg.png" />
+    <BundleResource Include="Resources\Countries\sh.png" />
+    <BundleResource Include="Resources\Countries\si.png" />
+    <BundleResource Include="Resources\Countries\sk.png" />
+    <BundleResource Include="Resources\Countries\sl.png" />
+    <BundleResource Include="Resources\Countries\sm.png" />
+    <BundleResource Include="Resources\Countries\sn.png" />
+    <BundleResource Include="Resources\Countries\so.png" />
+    <BundleResource Include="Resources\Countries\sr.png" />
+    <BundleResource Include="Resources\Countries\ss.png" />
+    <BundleResource Include="Resources\Countries\st.png" />
+    <BundleResource Include="Resources\Countries\sv.png" />
+    <BundleResource Include="Resources\Countries\sx.png" />
+    <BundleResource Include="Resources\Countries\sy.png" />
+    <BundleResource Include="Resources\Countries\sz.png" />
+    <BundleResource Include="Resources\Countries\tc.png" />
+    <BundleResource Include="Resources\Countries\td.png" />
+    <BundleResource Include="Resources\Countries\tf.png" />
+    <BundleResource Include="Resources\Countries\tg.png" />
+    <BundleResource Include="Resources\Countries\th.png" />
+    <BundleResource Include="Resources\Countries\tj.png" />
+    <BundleResource Include="Resources\Countries\tk.png" />
+    <BundleResource Include="Resources\Countries\tl.png" />
+    <BundleResource Include="Resources\Countries\tm.png" />
+    <BundleResource Include="Resources\Countries\tn.png" />
+    <BundleResource Include="Resources\Countries\to.png" />
+    <BundleResource Include="Resources\Countries\tr.png" />
+    <BundleResource Include="Resources\Countries\tt.png" />
+    <BundleResource Include="Resources\Countries\tv.png" />
+    <BundleResource Include="Resources\Countries\tw.png" />
+    <BundleResource Include="Resources\Countries\tz.png" />
+    <BundleResource Include="Resources\Countries\ua.png" />
+    <BundleResource Include="Resources\Countries\ug.png" />
+    <BundleResource Include="Resources\Countries\us.png" />
+    <BundleResource Include="Resources\Countries\uy.png" />
+    <BundleResource Include="Resources\Countries\uz.png" />
+    <BundleResource Include="Resources\Countries\va.png" />
+    <BundleResource Include="Resources\Countries\vc.png" />
+    <BundleResource Include="Resources\Countries\ve.png" />
+    <BundleResource Include="Resources\Countries\vg.png" />
+    <BundleResource Include="Resources\Countries\vi.png" />
+    <BundleResource Include="Resources\Countries\vn.png" />
+    <BundleResource Include="Resources\Countries\vu.png" />
+    <BundleResource Include="Resources\Countries\ws.png" />
+    <BundleResource Include="Resources\Countries\ye.png" />
+    <BundleResource Include="Resources\Countries\za.png" />
+    <BundleResource Include="Resources\Countries\zm.png" />
+    <BundleResource Include="Resources\Countries\zw.png" />
+  </ItemGroup>
+</Project>
